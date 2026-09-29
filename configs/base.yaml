@@ -1,0 +1,33 @@
+﻿project_name: GenRec
+version: 0.1.0
+
+seed: 42
+device: cuda
+
+dataset: ml-100k
+adapter: movielens_100k
+data_dir: data
+raw_data_dir: data/raw/ml-100k
+processed_data_dir: data/processed/ml-100k
+interactions_path: data/processed/ml-100k/interactions.csv
+items_path: data/processed/ml-100k/items.csv
+
+positive_rating_threshold: 4
+positive_only: true
+min_user_interactions: 5
+min_item_interactions: 5
+item_count_mode: unique_users
+max_filter_rounds: 100
+
+result_dir: results
+checkpoint_dir: checkpoints
+log_dir: logs
+
+max_seq_len: 50
+top_k: 10
+batch_size: 32
+num_workers: 0
+split_strategy: leave_last_two
+
+learning_rate: 0.001
+epochs: 10

@@ -1,0 +1,3 @@
+以NDCG@10为第一指标：
+time_half_life_days: 7
+popularity_penalty_alpha: 2.0

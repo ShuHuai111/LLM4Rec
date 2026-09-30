@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ML-100K 主模型对比</title>
+  <style>
+    body { margin: 0; padding: 32px; background: #f5f7fb; color: #1f2937; font-family: "Segoe UI", "Microsoft YaHei", sans-serif; }
+    main { max-width: 1120px; margin: auto; }
+    section { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 14px rgba(15,23,42,.05); }
+    h1 { margin: 0 0 8px; }
+    h2 { margin: 0 0 16px; font-size: 20px; }
+    p { color: #57606a; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid #e5e7eb; text-align: right; }
+    th { background: #f9fafb; color: #57606a; }
+    th:first-child, th:nth-child(2), td:first-child, td:nth-child(2) { text-align: left; }
+    tr:last-child td { border-bottom: 0; }
+    .note { background: #fff8c5; border: 1px solid #d4a72c; padding: 12px 16px; color: #57606a; }
+    code { background: #f6f8fa; padding: 2px 5px; border-radius: 4px; }
+    @media (max-width: 720px) { body { padding: 16px; } table { font-size: 12px; } section { padding: 16px; } }
+  </style>
+</head>
+<body>
+<main>
+  <section>
+    <h1>ML-100K 主模型对比</h1>
+    <p>Popularity、Item-KNN 与 Advanced Item-KNN</p>
+    <p>评估指标：Recall@10、NDCG@10、MRR@10；评估用户数：938。</p>
+  </section>
+  <section>
+    <h2>验证集</h2>
+    <table>
+      <thead><tr><th>模型</th><th>配置</th><th>Recall@10</th><th>NDCG@10</th><th>MRR@10</th></tr></thead>
+      <tbody><tr><td>Popularity</td><td>train popularity count</td><td>0.070362</td><td>0.035992</td><td>0.025766</td></tr>
+<tr><td>Item-KNN</td><td>neighbor_k=50</td><td>0.105544</td><td>0.054713</td><td>0.039311</td></tr>
+<tr><td>Advanced Item-KNN</td><td>half_life_days=7, alpha=2</td><td>0.125800</td><td>0.064647</td><td>0.046166</td></tr></tbody>
+    </table>
+  </section>
+  <section>
+    <h2>测试集</h2>
+    <table>
+      <thead><tr><th>模型</th><th>配置</th><th>Recall@10</th><th>NDCG@10</th><th>MRR@10</th></tr></thead>
+      <tbody><tr><td>Popularity</td><td>train popularity count</td><td>0.081023</td><td>0.040618</td><td>0.028530</td></tr>
+<tr><td>Item-KNN</td><td>neighbor_k=50</td><td>0.117271</td><td>0.065396</td><td>0.049725</td></tr>
+<tr><td>Advanced Item-KNN</td><td>half_life_days=7, alpha=2</td><td>0.124733</td><td>0.072163</td><td>0.056225</td></tr></tbody>
+    </table>
+  </section>
+  <section class="note">Advanced Item-KNN 同时开启时间衰减和流行度惩罚，参数为 half_life_days=7、alpha=2。验证集用于参数选择，测试集用于最终观察。</section>
+</main>
+</body>
+</html>

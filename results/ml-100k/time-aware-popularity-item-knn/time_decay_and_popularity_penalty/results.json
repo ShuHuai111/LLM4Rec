@@ -1,0 +1,32 @@
+{
+  "model": "time_aware_popularity_regularized_item_knn",
+  "dataset": "ml-100k",
+  "top_k": 10,
+  "model_config": {
+    "neighbor_k": 50,
+    "time_decay_enabled": true,
+    "time_half_life_days": 7.0,
+    "popularity_penalty_enabled": true,
+    "popularity_penalty_alpha": 2.0,
+    "popularity_count_mode": "unique_users"
+  },
+  "data": {
+    "train_rows": 52537,
+    "validation_rows": 938,
+    "test_rows": 938,
+    "train_users": 938,
+    "train_items": 1008
+  },
+  "validation": {
+    "num_users": 938,
+    "Recall@10": 0.1257995735607676,
+    "NDCG@10": 0.0646467373484015,
+    "MRR@10": 0.046166277456256156
+  },
+  "test": {
+    "num_users": 938,
+    "Recall@10": 0.12473347547974413,
+    "NDCG@10": 0.07216299469651115,
+    "MRR@10": 0.05622525129454769
+  }
+}

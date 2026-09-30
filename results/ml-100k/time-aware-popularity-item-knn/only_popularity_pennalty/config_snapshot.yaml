@@ -1,0 +1,9 @@
+dataset: ml-100k
+top_k: 10
+time_aware_item_knn:
+  neighbor_k: 50
+  time_decay_enabled: false
+  time_half_life_days: 7.0
+  popularity_penalty_enabled: true
+  popularity_penalty_alpha: 2.0
+  popularity_count_mode: unique_users

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Item-KNN · MovieLens 100K 结果</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f6fa;color:#18243b;font-family:"Segoe UI","Microsoft YaHei",sans-serif;padding:36px 20px}main{max-width:1000px;margin:auto}header{padding:8px 0 24px}.eyebrow{color:#2563eb;font-size:13px;letter-spacing:1px}h1{font-size:30px;margin:10px 0}h2{font-size:19px;margin:0 0 18px}.muted{color:#607087;line-height:1.7}.card{background:white;border:1px solid #dde5ef;border-radius:14px;padding:24px;margin:0 0 20px}.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.chips span{background:#eef4ff;padding:8px 12px;border-radius:7px;font-size:14px}.scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;white-space:nowrap;font-variant-numeric:tabular-nums}caption{text-align:left;font-size:13px;color:#607087;padding:0 0 12px}th,td{padding:15px 13px;border-bottom:1px solid #e7edf4;text-align:right}thead{background:#f6f8fc;color:#52637a}th:first-child{text-align:left}tbody th{font-weight:500}tbody tr:last-child>*{border-bottom:0}.highlight{background:#eef5ff;color:#1553b7}.highlight td{font-weight:700}p{line-height:1.8;margin:10px 0}footer{font-size:12px;color:#607087;margin:20px 0}@media(max-width:600px){body{padding:20px 12px}.card{padding:18px}h1{font-size:24px}}
+</style>
+</head>
+<body><main>
+<header><div class="eyebrow">GENREC / BASELINE EXPERIMENT</div>
+<h1>Item-KNN 评估结果</h1>
+<div class="muted">MovieLens 100K · 实验日期：2026-09-30</div>
+<div class="chips"><span>余弦相似度</span><span>邻居数：50</span><span>训练交互：52,537</span><span>用户：938</span><span>物品：1,008</span></div></header>
+<section class="card"><h2>验证集与测试集</h2><div class="scroll"><table>
+<caption>指标按用户平均；数值保留六位小数，越高越好。</caption>
+<thead><tr><th scope="col">数据集</th><th scope="col">评估用户</th><th scope="col">Recall@10</th><th scope="col">NDCG@10</th><th scope="col">MRR@10</th></tr></thead>
+<tbody><tr><th scope="row">验证集 Validation</th><td>938</td><td>0.105544</td><td>0.054713</td><td>0.039311</td></tr><tr><th scope="row">测试集 Test</th><td>938</td><td>0.117271</td><td>0.065396</td><td>0.049725</td></tr></tbody></table></div></section>
+<section class="card"><h2>测试集基线对比</h2><div class="scroll"><table>
+<caption>相对提升 = (Item-KNN / Popularity − 1) × 100%。</caption>
+<thead><tr><th scope="col">模型</th><th scope="col">Recall@10</th><th scope="col">NDCG@10</th><th scope="col">MRR@10</th></tr></thead>
+<tbody><tr><th scope="row">Popularity</th><td>0.081023</td><td>0.040618</td><td>0.028530</td></tr><tr class="highlight"><th scope="row">Item-KNN</th><td>0.117271</td><td>0.065396</td><td>0.049725</td></tr><tr><th scope="row">相对提升</th><td>+44.74%</td><td>+61.00%</td><td>+74.29%</td></tr></tbody></table></div></section>
+<section class="card"><h2>评估设置</h2><p>使用二值物品–用户交互矩阵计算余弦相似度，每个物品保留最多 50 个邻居，根据用户历史累加邻居相似度得分。</p><p class="muted">模型仅使用 train.csv 拟合；验证历史为 train.csv，测试历史为 train.csv + valid.csv。候选来自训练物品集合，排除已交互物品；每位用户各有一条验证目标和测试目标。未启用 Popularity 补充推荐。</p></section>
+<footer>Item-KNN 数据来源：同目录 item_knn_results.json。Popularity 数据来源：此前已运行的基线评估结果。本页记录离线评估结果。</footer>
+</main></body></html>

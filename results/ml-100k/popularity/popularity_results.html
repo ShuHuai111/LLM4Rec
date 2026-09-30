@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popularity Baseline Results</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 20px;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .summary-item {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fafafa;
+    }
+
+    .summary-label {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .summary-value {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    th,
+    td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: right;
+    }
+
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+
+    thead th {
+      color: var(--muted);
+      font-weight: 600;
+      background: #f9fafb;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .metric {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 22px;
+      line-height: 1.9;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 16px;
+      }
+
+      .summary {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      table {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <h1>Popularity Baseline 结果</h1>
+      <p class="subtitle">GenRec · MovieLens 100K · 2026-09-30</p>
+
+      <div class="summary">
+        <div class="summary-item">
+          <span class="summary-label">训练交互</span>
+          <span class="summary-value">52,537</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">评估用户</span>
+          <span class="summary-value">938</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">训练物品</span>
+          <span class="summary-value">1,008</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">推荐长度</span>
+          <span class="summary-value">Top-10</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>评估指标</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>数据集</th>
+            <th>Recall@10</th>
+            <th>NDCG@10</th>
+            <th>MRR@10</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Validation</td>
+            <td class="metric">0.070362</td>
+            <td class="metric">0.035992</td>
+            <td class="metric">0.025766</td>
+          </tr>
+          <tr>
+            <td>Test</td>
+            <td class="metric">0.081023</td>
+            <td class="metric">0.040619</td>
+            <td class="metric">0.028530</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>评估协议</h2>
+      <ul>
+        <li>Popularity 只使用 <code>train.csv</code> 统计物品流行度。</li>
+        <li>验证集评估使用训练集作为用户历史。</li>
+        <li>测试集评估使用训练集加验证集作为用户历史。</li>
+        <li>推荐时排除用户已经交互过的物品。</li>
+        <li>每个用户在验证集和测试集各有一个目标物品。</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>结果说明</h2>
+      <p class="note">
+        Popularity 是非个性化基线：按照训练集中的物品交互次数排序，向用户推荐热门且尚未交互的物品。
+        后续 ItemKNN、SASRec 和 TIGER-style 生成模型应使用相同的数据切分和指标进行对比。
+      </p>
+    </section>
+  </main>
+</body>
+</html>

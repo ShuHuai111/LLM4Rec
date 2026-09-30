@@ -1,0 +1,48 @@
+{
+  "model": "ItemKNN",
+  "dataset": "ml-100k",
+  "run_date": "2026-09-30",
+  "config": {
+    "neighbor_k": 50,
+    "similarity": "cosine",
+    "interaction_matrix": "binary item-user matrix",
+    "fit_data": "train.csv"
+  },
+  "data": {
+    "train_interactions": 52537,
+    "valid_interactions": 938,
+    "test_interactions": 938,
+    "num_users": 938,
+    "num_items": 1008,
+    "item_user_matrix_shape": [1008, 938],
+    "item_similarity_matrix_shape": [1008, 1008]
+  },
+  "evaluation_protocol": {
+    "valid_history": "train.csv",
+    "test_history": "train.csv + valid.csv",
+    "seen_items_excluded": true,
+    "metrics": ["Recall@10", "NDCG@10", "MRR@10"]
+  },
+  "metrics": {
+    "valid": {
+      "num_users": 938,
+      "Recall@10": 0.10554371002132196,
+      "NDCG@10": 0.05471256830288907,
+      "MRR@10": 0.039310674518563654
+    },
+    "test": {
+      "num_users": 938,
+      "Recall@10": 0.11727078891257996,
+      "NDCG@10": 0.06539589347539002,
+      "MRR@10": 0.049724591329068965
+    }
+  },
+  "implementation_checks": {
+    "python_compile": "passed",
+    "recommendation_count_for_user_1": 10,
+    "duplicate_recommendations": false,
+    "seen_item_overlap_for_user_1": 0,
+    "neighbor_cache_size": 1008,
+    "max_neighbors_per_item": 50
+  }
+}

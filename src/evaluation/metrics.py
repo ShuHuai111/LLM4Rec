@@ -170,8 +170,24 @@ def evaluate_recommender(
             ground_truth[str(user_id)] = (group["item_id"].astype("string").tolist())
 
         recommendations: dict[str, list[str]] = {}
+
+        prepare_history = getattr(model, "prepare_history", None)
+        if callable(prepare_history):
+            prepare_history(history_interactions)
+
         for user_id in ground_truth:
-            recommendations[user_id] = (model.recommend_for_user(user_id,history_interactions,k=k,))
+            if callable(prepare_history):
+                recommendations[user_id] = (
+                    model.recommend_for_user(user_id, k=k)
+                )
+            else:
+                recommendations[user_id] = (
+                    model.recommend_for_user(
+                        user_id,
+                        history_interactions,
+                        k=k,
+                    )
+                )
 
         return evaluate_ranking(recommendations,ground_truth,k=k,)
 

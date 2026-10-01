@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advanced SASRec 消融实验</title>
+  <style>
+    body { margin: 0; padding: 32px; background: #f5f7fb; color: #1f2937; font-family: "Segoe UI", "Microsoft YaHei", sans-serif; }
+    main { max-width: 1120px; margin: auto; }
+    section { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 14px rgba(15,23,42,.05); }
+    h1 { margin: 0 0 8px; }
+    h2 { margin: 0 0 16px; font-size: 20px; }
+    p { color: #57606a; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid #e5e7eb; text-align: right; }
+    th { background: #f9fafb; color: #57606a; }
+    th:first-child, td:first-child { text-align: left; }
+    tr:last-child td { border-bottom: 0; }
+  </style>
+</head>
+<body>
+<main>
+  <section>
+    <h1>Advanced SASRec 消融实验</h1>
+    <p>比较 SwiGLU 和 ALiBi 对 SASRec 的独立影响与组合效果。</p>
+    <p>指标：Recall@10、NDCG@10、MRR@10；验证用户数和测试用户数均为 938。</p>
+  </section>
+  <section>
+    <h2>验证集</h2>
+    <table>
+      <thead><tr><th>模型</th><th>最佳 epoch</th><th>Recall@10</th><th>NDCG@10</th><th>MRR@10</th></tr></thead>
+      <tbody><tr><td>ReLU + Learnable Position</td><td>8</td><td>0.216418</td><td>0.110993</td><td>0.079376</td></tr>
+<tr><td>SwiGLU + Learnable Position</td><td>6</td><td>0.211087</td><td>0.112705</td><td>0.082942</td></tr>
+<tr><td>ReLU + ALiBi</td><td>6</td><td>0.202559</td><td>0.099571</td><td>0.068432</td></tr>
+<tr><td>SwiGLU + ALiBi</td><td>5</td><td>0.195096</td><td>0.099921</td><td>0.071472</td></tr></tbody>
+    </table>
+  </section>
+  <section>
+    <h2>测试集</h2>
+    <table>
+      <thead><tr><th>模型</th><th>最佳 epoch</th><th>Recall@10</th><th>NDCG@10</th><th>MRR@10</th></tr></thead>
+      <tbody><tr><td>ReLU + Learnable Position</td><td>8</td><td>0.212154</td><td>0.110402</td><td>0.079849</td></tr>
+<tr><td>SwiGLU + Learnable Position</td><td>6</td><td>0.201493</td><td>0.105735</td><td>0.076546</td></tr>
+<tr><td>ReLU + ALiBi</td><td>6</td><td>0.186567</td><td>0.096446</td><td>0.069491</td></tr>
+<tr><td>SwiGLU + ALiBi</td><td>5</td><td>0.179104</td><td>0.093991</td><td>0.068509</td></tr></tbody>
+    </table>
+  </section>
+</main>
+</body>
+</html>

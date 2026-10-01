@@ -29,6 +29,17 @@ time_aware_item_knn:
   popularity_penalty_alpha: 0.25
   popularity_count_mode: unique_users
   result_dir: results/ml-100k/time-aware-popularity-item-knn
+sasrec:
+  embedding_dim: 64
+  num_heads: 2
+  num_layers: 2
+  feed_forward_dim: 128
+  dropout: 0.2
+  weight_decay: 0.00001
+  grad_clip_norm: 5.0
+  patience: 3
+  result_dir: results/ml-100k/sasrec
+  checkpoint_path: checkpoints/ml-100k/sasrec_best.pt
 max_seq_len: 50
 top_k: 10
 batch_size: 32

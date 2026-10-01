@@ -1,0 +1,18 @@
+variant:
+  name: relu_alibi
+  label: ReLU + ALiBi
+  ffn_type: relu
+  position_encoding: alibi
+model_config:
+  max_seq_len: 50
+  embedding_dim: 64
+  num_heads: 2
+  num_layers: 2
+  feed_forward_dim: 128
+  dropout: 0.2
+  ffn_type: relu
+  position_encoding: alibi
+  learning_rate: 0.001
+  weight_decay: 1.0e-05
+  grad_clip_norm: 5.0
+  patience: 3

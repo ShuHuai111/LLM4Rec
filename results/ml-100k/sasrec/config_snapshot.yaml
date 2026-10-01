@@ -1,0 +1,13 @@
+dataset: ml-100k
+top_k: 10
+sasrec:
+  max_seq_len: 50
+  embedding_dim: 64
+  num_heads: 2
+  num_layers: 2
+  feed_forward_dim: 128
+  dropout: 0.2
+  learning_rate: 0.001
+  weight_decay: 1.0e-05
+  grad_clip_norm: 5.0
+  patience: 3

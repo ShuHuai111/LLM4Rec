@@ -17,9 +17,8 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.semantic_id.adapter import (
-    SemanticIDMapper,
-    SemanticSequenceAdapter,)
+from src.representations.semantic_id.mapper import SemanticIDMapper
+from src.sequences.semantic_sequence import SemanticSequenceAdapter
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build Semantic ID sequence datasets.")

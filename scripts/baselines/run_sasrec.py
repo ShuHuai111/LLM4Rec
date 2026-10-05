@@ -9,17 +9,17 @@ import json
 import torch
 from torch.utils.data import DataLoader, TensorDataset
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.baselines.sasrec import (
+from src.models.baselines.sasrec import (
     SASRec,
     SASRecRecommender,
     SASRecTrainer,
     set_seed,
 )
-from src.data.sequence_dataset import SASRecSequenceDataset
+from src.models.baselines.sasrec.dataset import SASRecSequenceDataset
 from src.evaluation.metrics import evaluate_recommender
 
 def parse_args() -> argparse.Namespace:
@@ -267,7 +267,7 @@ def main() -> None:
     result_dir = resolve_path(sasrec_config.get("result_dir", "results/ml-100k/sasrec"))
     checkpoint_path = resolve_path(sasrec_config.get("checkpoint_path", "checkpoints/ml-100k/sasrec_best.pt"))
 
-    # 训练器构建，调用 src/baselines/sasrec/trainer中的SASRecTrainer，将其实例化
+    # 训练器构建，调用 src/models/baselines/sasrec/trainer 中的 SASRecTrainer，将其实例化
     trainer = SASRecTrainer(
         model=model,
         train_loader=train_loader,

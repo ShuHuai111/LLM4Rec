@@ -1,9 +1,9 @@
-﻿from pathlib import Path
+from pathlib import Path
 import importlib.util
 import platform
 import sys
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 CONFIG_PATH = PROJECT_ROOT / "configs" / "base.yaml"
 
 print("=" * 60)

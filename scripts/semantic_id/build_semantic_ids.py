@@ -15,9 +15,9 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.semantic_id.item_encoder import ItemTextEncoder
-from src.semantic_id.quantizer import (ResidualVectorQuantizer as BasicQuantizer,)
-from src.semantic_id.advanced_quantizer import (ResidualVectorQuantizer as AdvancedQuantizer,)
+from src.representations.semantic_id.encoder import ItemTextEncoder
+from src.representations.semantic_id.quantizer import (ResidualVectorQuantizer as BasicQuantizer,)
+from src.representations.semantic_id.advanced_quantizer import (ResidualVectorQuantizer as AdvancedQuantizer,)
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build item Semantic IDs.")

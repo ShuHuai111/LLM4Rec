@@ -5,15 +5,15 @@ from pathlib import Path
 import sys
 import json
 import argparse
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 import yaml
-from src.adapters.movielens_100k import MovieLens100KAdapter
-from src.data.filter import filter_dataset
-from src.data.normalize import normalize_dataset
-from src.data.split import split_dataset
+from src.datasets.adapters.movielens_100k import MovieLens100KAdapter
+from src.preprocessing.filter import filter_dataset
+from src.preprocessing.normalize import normalize_dataset
+from src.preprocessing.split import split_dataset
 
 """
 将配置中的路径解析为绝对路径。

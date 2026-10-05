@@ -35,7 +35,7 @@ sasrec:
   num_layers: 2
   feed_forward_dim: 128
   dropout: 0.2
-  weight_decay: 0.00001
+  weight_decay: 1.0e-05
   grad_clip_norm: 5.0
   patience: 3
   result_dir: results/ml-100k/sasrec
@@ -46,7 +46,7 @@ advanced_sasrec:
   num_layers: 2
   feed_forward_dim: 128
   dropout: 0.2
-  weight_decay: 0.00001
+  weight_decay: 1.0e-05
   grad_clip_norm: 5.0
   patience: 3
   result_dir: results/ml-100k/advanced-sasrec
@@ -66,7 +66,7 @@ tiger:
   batch_size: 32
   learning_rate: 0.001
   epochs: 10
-  weight_decay: 0.00001
+  weight_decay: 1.0e-05
   grad_clip_norm: 5.0
   patience: 3
   result_dir: results/ml-100k/tiger
@@ -77,12 +77,12 @@ semantic_id:
   encoder:
     n_components: 32
     text_columns:
-      - title
-      - genres
+    - title
+    - genres
     max_features: 20000
     ngram_range:
-      - 1
-      - 2
+    - 1
+    - 2
     min_df: 1
     max_df: 1.0
     lowercase: true
@@ -102,3 +102,12 @@ num_workers: 0
 split_strategy: leave_last_two
 learning_rate: 0.001
 epochs: 10
+tiger_evaluation:
+  semantic_dir: D:\LLM\LLM4Rec\data\processed\ml-100k\semantic_id\advanced
+  checkpoint_path: D:\LLM\LLM4Rec\checkpoints\ml-100k\tiger_best.pt
+  output_dir: D:\LLM\LLM4Rec\results\ml-100k\tiger
+  top_k: 10
+  beam_width: 32
+  temperature: 1.0
+  device: cuda
+  max_users: null

@@ -13,18 +13,18 @@ import yaml
 from torch.utils.data import DataLoader, TensorDataset
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.baselines.advanced_sasrec import (
+from src.models.baselines.advanced_sasrec import (
     SASRec,
     SASRecRecommender,
     SASRecTrainer,
     set_seed,
 )
-from src.data.sequence_dataset import SASRecSequenceDataset
+from src.models.baselines.sasrec.dataset import SASRecSequenceDataset
 from src.evaluation.metrics import evaluate_recommender
 
 

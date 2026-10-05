@@ -25,7 +25,7 @@
 <main>
   <section>
     <h1>ML-100K 主模型对比</h1>
-    <p>Popularity、Item-KNN、Advanced Item-KNN 与 SASRec</p>
+    <p>Popularity、Item-KNN、Advanced Item-KNN、SASRec 与 TIGER</p>
     <p>评估指标：Recall@10、NDCG@10、MRR@10；评估用户数：938。</p>
   </section>
   <section>
@@ -35,7 +35,8 @@
       <tbody><tr><td>Popularity</td><td>train popularity count</td><td>0.070362</td><td>0.035992</td><td>0.025766</td></tr>
 <tr><td>Item-KNN</td><td>neighbor_k=50</td><td>0.105544</td><td>0.054713</td><td>0.039311</td></tr>
 <tr><td>Advanced Item-KNN</td><td>half_life_days=7, alpha=2</td><td>0.125800</td><td>0.064647</td><td>0.046166</td></tr>
-<tr><td>SASRec</td><td>dim=64, heads=2, layers=2, best_epoch=8</td><td>0.216418</td><td>0.110993</td><td>0.079376</td></tr></tbody>
+<tr><td>SASRec</td><td>dim=64, heads=2, layers=2, best_epoch=8</td><td>0.216418</td><td>0.110993</td><td>0.079376</td></tr>
+<tr><td>TIGER</td><td>Advanced SID, dim=64, layers=2, beam=32, epoch=10</td><td>0.160981</td><td>0.084800</td><td>0.061869</td></tr></tbody>
     </table>
   </section>
   <section>
@@ -45,10 +46,12 @@
       <tbody><tr><td>Popularity</td><td>train popularity count</td><td>0.081023</td><td>0.040618</td><td>0.028530</td></tr>
 <tr><td>Item-KNN</td><td>neighbor_k=50</td><td>0.117271</td><td>0.065396</td><td>0.049725</td></tr>
 <tr><td>Advanced Item-KNN</td><td>half_life_days=7, alpha=2</td><td>0.124733</td><td>0.072163</td><td>0.056225</td></tr>
-<tr><td>SASRec</td><td>dim=64, heads=2, layers=2, best_epoch=8</td><td>0.212154</td><td>0.110402</td><td>0.079849</td></tr></tbody>
+<tr><td>SASRec</td><td>dim=64, heads=2, layers=2, best_epoch=8</td><td>0.212154</td><td>0.110402</td><td>0.079849</td></tr>
+<tr><td>TIGER</td><td>Advanced SID, dim=64, layers=2, beam=32, epoch=10</td><td>0.141791</td><td>0.067361</td><td>0.044839</td></tr></tbody>
     </table>
   </section>
   <section class="note">Advanced Item-KNN 同时开启时间衰减和流行度惩罚，参数为 half_life_days=7、alpha=2。SASRec 使用 embedding_dim=64、num_heads=2、num_layers=2，验证集最佳 epoch 为 8。验证集用于参数选择，测试集用于最终观察。</section>
+  <section class="note">TIGER 为当前项目实现的 Semantic ID 生成模型，使用 Advanced Semantic ID（3 层码本，每层 64 个 code），训练 batch_size=8、seed=42、最佳 epoch=10，解码 beam_width=32、temperature=1.0。验证集历史使用 train，测试集历史使用 train + valid；模型参数不在测试阶段更新。测试集有 13 个用户返回少于 10 条推荐（最少 5 条），指标按实际返回列表计算，不剔除这些用户。训练配置和评估结果分别见 <a href="tiger/config_snapshot.yaml">配置快照</a>、<a href="tiger/evaluation.json">evaluation.json</a>。</section>
 </main>
 </body>
 </html>

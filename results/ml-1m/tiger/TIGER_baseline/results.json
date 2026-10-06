@@ -1,0 +1,11 @@
+{
+  "dataset": "ml-1m",
+  "sequence_dir": "D:\\LLM\\LLM4Rec\\data\\processed\\ml-1m\\semantic_sequences\\TIGER_baseline",
+  "train_samples": 556274,
+  "valid_samples": 6034,
+  "device": "cuda",
+  "best_epoch": 3,
+  "best_valid_loss": 1.4063620412827802,
+  "checkpoint_path": "D:\\LLM\\LLM4Rec\\checkpoints\\ml-1m\\tiger\\TIGER_baseline_best.pt",
+  "model_parameter_count": 100160
+}

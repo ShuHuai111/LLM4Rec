@@ -1,0 +1,43 @@
+project_name: GenRec
+version: 0.1.0
+seed: 42
+device: cuda
+dataset: ml-100k
+processed_data_dir: data/processed/ml-100k
+items_path: data/processed/ml-100k/items.csv
+max_seq_len: 50
+top_k: 10
+num_workers: 0
+
+semantic_id:
+  quantizer_mode: advanced
+  output_dir: data/processed/ml-100k/semantic_id/advanced
+  quantizer:
+    codebook_size: 64
+    num_codebooks: 3
+
+semantic_sequence:
+  output_dir: data/processed/ml-100k/semantic_sequences/advanced
+  max_seq_len: 50
+  min_history_len: 1
+
+tiger:
+  vocab_size: 196
+  max_history_tokens: 200
+  target_token_length: 4
+  embedding_dim: 64
+  num_heads: 2
+  num_layers: 2
+  feed_forward_dim: 128
+  dropout: 0.1
+  pad_token_id: 0
+  bos_token_id: 194
+  eos_token_id: 195
+  batch_size: 32
+  learning_rate: 0.001
+  epochs: 3
+  weight_decay: 0.00001
+  grad_clip_norm: 5.0
+  patience: 2
+  result_dir: results/ml-100k/tiger/advanced_3code
+  checkpoint_path: checkpoints/ml-100k/tiger/advanced_3code_best.pt

@@ -1,0 +1,45 @@
+project_name: GenRec
+version: 0.1.0
+seed: 42
+device: cuda
+
+dataset: ml-1m
+adapter: movielens_1m
+raw_data_dir: data/raw/ml-1m/ml-1m
+processed_data_dir: data/processed/ml-1m
+interactions_path: data/processed/ml-1m/interactions.csv
+items_path: data/processed/ml-1m/items.csv
+
+positive_rating_threshold: 4
+positive_only: true
+min_user_interactions: 5
+min_item_interactions: 5
+item_count_mode: unique_users
+max_filter_rounds: 100
+split_strategy: leave_last_two
+require_train_item_coverage: true
+
+semantic_id:
+  quantizer_mode: advanced
+  output_dir: data/processed/ml-1m/semantic_id/advanced
+  encoder:
+    n_components: 32
+    text_columns:
+      - title
+      - genres
+    max_features: 20000
+    ngram_range:
+      - 1
+      - 2
+    min_df: 1
+    max_df: 1.0
+    lowercase: true
+    normalize_embeddings: true
+  quantizer:
+    codebook_size: 64
+    num_codebooks: 3
+    n_init: 10
+    max_iter: 300
+    distance_batch_size: 4096
+  beam_width: 128
+  branch_width: 16

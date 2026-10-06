@@ -11,6 +11,7 @@ if str(PROJECT_ROOT) not in sys.path:
 
 import yaml
 from src.datasets.adapters.movielens_100k import MovieLens100KAdapter
+from src.datasets.adapters.movielens_1m import MovieLens1MAdapter
 from src.preprocessing.filter import filter_dataset
 from src.preprocessing.normalize import normalize_dataset
 from src.preprocessing.split import split_dataset
@@ -44,7 +45,7 @@ def load_config(config_path: str | Path,) -> dict[str, Any]:
 
 """
     根据配置创建数据适配器。
-    当前只支持 MovieLens 100K。
+    当前支持 MovieLens 100K 和 MovieLens 1M。
     后续扩展时可以用字典代替if，避免代码臃肿
 """
 def build_adapter(config: dict[str, Any],):
@@ -58,6 +59,13 @@ def build_adapter(config: dict[str, Any],):
             PROJECT_ROOT,)
         return MovieLens100KAdapter(
             raw_data_dir)
+
+    if adapter_name == "movielens_1m":
+        raw_data_dir = resolve_path(
+            config["raw_data_dir"],
+            PROJECT_ROOT,
+        )
+        return MovieLens1MAdapter(raw_data_dir)
 
     raise ValueError(f"暂不支持的数据适配器：{adapter_name}")
 

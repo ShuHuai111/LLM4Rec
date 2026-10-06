@@ -73,7 +73,6 @@ def _normalize_id_column(
 把不同形式的时间统一为Unix秒级时间戳
 """
 def _normalize_timestamp(series: pd.Series) -> pd.Series:
-    """将数值时间戳或日期字符串统一转换为 Unix 秒。"""
     # datetime64 底层存储的是纳秒，不能先走 pd.to_numeric()
     # 否则会把纳秒误当成秒。
     if not pd.api.types.is_datetime64_any_dtype(series):
@@ -216,9 +215,7 @@ def normalize_interactions(
         normalized["is_positive"] = True
 
     if deduplicate:
-        normalized = normalized.drop_duplicates(
-            keep="first"
-        ).reset_index(drop=True)
+        normalized = normalized.drop_duplicates(keep="first").reset_index(drop=True)
 
     # 保存原始行顺序，用于 timestamp 相同时保持确定性
     normalized["_source_order"] = range(len(normalized))

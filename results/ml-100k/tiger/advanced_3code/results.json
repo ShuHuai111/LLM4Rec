@@ -1,0 +1,11 @@
+{
+  "dataset": "ml-100k",
+  "sequence_dir": "D:\\LLM\\LLM4Rec\\data\\processed\\ml-100k\\semantic_sequences\\advanced",
+  "train_samples": 51599,
+  "valid_samples": 938,
+  "device": "cuda",
+  "best_epoch": 3,
+  "best_valid_loss": 1.8110839227623523,
+  "checkpoint_path": "D:\\LLM\\LLM4Rec\\checkpoints\\ml-100k\\tiger\\advanced_3code_best.pt",
+  "model_parameter_count": 92800
+}

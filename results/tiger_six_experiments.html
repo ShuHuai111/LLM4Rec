@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>TIGER 六组实验结果</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 32px; color: #1f2937; }
+h1 { margin-bottom: 8px; }
+p { color: #4b5563; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { border: 1px solid #d1d5db; padding: 8px 10px; text-align: right; white-space: nowrap; }
+th { background: #eef2ff; text-align: center; }
+td:nth-child(2), td:nth-child(3), td:nth-child(4) { text-align: left; }
+tr:nth-child(even) { background: #f9fafb; }
+.note { margin-top: 18px; font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>TIGER 六组实验结果</h1>
+<p>完整 valid/test 用户评估；训练 3 epoch；batch size 32；beam width 16；原始三码 baseline 未纳入本表。</p>
+<table><thead><tr><th>ID</th><th>实验</th><th>数据集</th><th>Semantic ID</th><th>长度</th><th>前三码碰撞率</th><th>完整 ID 碰撞率</th><th>Valid Recall@10</th><th>Valid NDCG@10</th><th>Valid MRR@10</th><th>Test Recall@10</th><th>Test NDCG@10</th><th>Test MRR@10</th><th>Test 平均推荐数</th><th>Test 少于 10 条用户</th><th>最佳 epoch</th><th>Beam width</th></tr></thead><tbody><tr><td>E1</td><td>100K 同数据集 TIGER_baseline</td><td>ml-100k</td><td>baseline_paper_4code</td><td>4</td><td>0.387039</td><td>0.000000</td><td>0.093817</td><td>0.047266</td><td>0.033301</td><td>0.091684</td><td>0.049456</td><td>0.036534</td><td>9.369936</td><td>231</td><td>3</td><td>16</td></tr><tr><td>E2</td><td>100K 同数据集 Advanced TIGER</td><td>ml-100k</td><td>advanced_3code</td><td>3</td><td>0.387039</td><td>0.000000</td><td>0.108742</td><td>0.050778</td><td>0.033375</td><td>0.095949</td><td>0.048285</td><td>0.033775</td><td>9.281450</td><td>255</td><td>3</td><td>16</td></tr><tr><td>E3</td><td>1M 同数据集 TIGER_baseline</td><td>ml-1m</td><td>baseline_paper_4code</td><td>4</td><td>0.497811</td><td>0.000000</td><td>0.111700</td><td>0.057169</td><td>0.040635</td><td>0.105403</td><td>0.056077</td><td>0.041018</td><td>9.142029</td><td>1812</td><td>3</td><td>16</td></tr><tr><td>E4</td><td>1M 同数据集 Advanced TIGER</td><td>ml-1m</td><td>advanced_3code</td><td>3</td><td>0.497811</td><td>0.000000</td><td>0.108054</td><td>0.057923</td><td>0.042637</td><td>0.116009</td><td>0.061901</td><td>0.045428</td><td>9.233510</td><td>1621</td><td>3</td><td>16</td></tr><tr><td>E5</td><td>1M 编码规则迁移到 100K TIGER_baseline</td><td>ml-100k</td><td>cross_dataset_baseline_paper_4code</td><td>4</td><td>0.445303</td><td>0.000000</td><td>0.109808</td><td>0.053984</td><td>0.037024</td><td>0.094883</td><td>0.049175</td><td>0.035361</td><td>9.444563</td><td>214</td><td>3</td><td>16</td></tr><tr><td>E6</td><td>1M 编码规则迁移到 100K Advanced TIGER</td><td>ml-100k</td><td>cross_dataset_advanced_3code</td><td>3</td><td>0.445303</td><td>0.000000</td><td>0.083156</td><td>0.042654</td><td>0.030300</td><td>0.102345</td><td>0.054270</td><td>0.039551</td><td>9.039446</td><td>319</td><td>3</td><td>16</td></tr></tbody></table>
+<p class="note">前三码碰撞率用于描述量化前缀；完整 ID 碰撞率用于描述最终可解码 Semantic ID。</p>
+</body>
+</html>

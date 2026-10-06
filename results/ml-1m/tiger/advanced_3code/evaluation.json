@@ -1,0 +1,36 @@
+{
+  "model": "tiger",
+  "dataset": "ml-1m",
+  "device": "cuda",
+  "top_k": 10,
+  "beam_width": 16,
+  "temperature": 1.0,
+  "semantic_dir": "D:\\LLM\\LLM4Rec\\data\\processed\\ml-1m\\semantic_id\\advanced",
+  "checkpoint_path": "D:\\LLM\\LLM4Rec\\checkpoints\\ml-1m\\tiger\\advanced_3code_best.pt",
+  "data": {
+    "train_rows": 562308,
+    "validation_rows": 6034,
+    "test_rows": 6034,
+    "validation_history_rows": 562308,
+    "test_history_rows": 568342,
+    "validation_users_evaluated": 6034,
+    "test_users_evaluated": 6034,
+    "max_users": null
+  },
+  "validation": {
+    "num_users": 6034,
+    "Recall@10": 0.10805435863440503,
+    "NDCG@10": 0.0579227408930771,
+    "MRR@10": 0.04263689621246792
+  },
+  "test": {
+    "num_users": 6034,
+    "Recall@10": 0.11600928074245939,
+    "NDCG@10": 0.06190124432756694,
+    "MRR@10": 0.045427563910328234
+  },
+  "runtime_seconds": {
+    "validation": 563.1816035999946,
+    "test": 592.9118368999989
+  }
+}
